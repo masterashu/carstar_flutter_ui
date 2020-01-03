@@ -79,4 +79,11 @@ flutter:
     - assets/icons/gas-station.png
     - assets/icons/gearshift.png
     - assets/images/logo.png
-    
+    - assets/images/sonata.png
+
+  fonts:
+    - family: Gilroy
+      fonts:
+       - asset: assets/fonts/Gilroy-Light.otf
+       - asset: assets/fonts/Gilroy-ExtraBold.otf
+         weight: 800
