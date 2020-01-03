@@ -70,3 +70,13 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  assets:
+    - assets/icons/car.png
+    - assets/icons/chair.png
+    - assets/icons/dashboard.png
+    - assets/icons/engine.png
+    - assets/icons/gas-station.png
+    - assets/icons/gearshift.png
+    - assets/images/logo.png
+    
