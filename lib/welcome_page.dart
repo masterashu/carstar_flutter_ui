@@ -1,3 +1,4 @@
+import 'package:carstar/car_listing_page.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -49,8 +50,9 @@ class _WelcomePageState extends State<WelcomePage> {
             bottom: 0,
             right: 0,
             child: GestureDetector(
-              onTap: (){
-                Navigator.of(context).pushReplacement(newRoute)
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => CarsList()));
               },
               child: Container(
                 width: MediaQuery.of(context).size.width / 2,
