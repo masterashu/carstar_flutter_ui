@@ -1,3 +1,4 @@
+import 'package:carstar/car_details_page.dart';
 import 'package:carstar/cars.dart';
 import 'package:flutter/material.dart';
 
@@ -182,99 +183,132 @@ class CarDetailsCard extends StatefulWidget {
 class _CarDetailsCardState extends State<CarDetailsCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(32),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 10,
-            spreadRadius: 3,
-            color: Color.fromARGB(255, 228, 228, 228),
-          ),
-        ],
-        shape: BoxShape.rectangle,
-        color: Colors.white,
-      ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => CarDetailPage(widget.car)));
+      },
       child: Container(
-        width: 420,
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: 12, left: 24),
-                  child: Text(
-                    widget.car.name,
-                    style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w800,
-                        fontFamily: "Gilroy"),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 12, right: 24),
-                  child: Text(
-                    widget.car.manufacturer,
-                    style: TextStyle(fontSize: 24, fontFamily: "Gilroy"),
-                  ),
-                )
-              ],
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(32),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 10,
+              spreadRadius: 3,
+              color: Color.fromARGB(255, 228, 228, 228),
             ),
-            Image.asset(
-              widget.car.image,
-              height: 180,
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(children: [
-                      TextSpan(
-                          text: "\$ ${widget.car.rate.toString()}",
+          ],
+          shape: BoxShape.rectangle,
+          color: Colors.white,
+        ),
+        child: Container(
+          width: 420,
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 16, left: 24),
+                    child: Hero(
+                      tag: "car_name_${widget.car.fullname}",
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Text(
+                          widget.car.name,
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              fontFamily: "Gilroy",
-                              fontWeight: FontWeight.w800)),
-                      TextSpan(
-                          text: "  /day",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Gilroy",
-                          ))
-                    ]),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(32),
-                            bottomRight: Radius.circular(32)),
-                        color: Theme.of(context).accentColor,
-                      ),
-                      padding: EdgeInsets.all(12.0),
-                      child: Text(
-                        "Book",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
                             fontSize: 28,
+                            fontWeight: FontWeight.w800,
                             fontFamily: "Gilroy",
-                            fontWeight: FontWeight.w800),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                )
-              ],
-            )
-          ],
+                  Padding(
+                    padding: EdgeInsets.only(top: 16, right: 24),
+                    child: Hero(
+                      tag: "car_manufacturer_${widget.car.fullname}",
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Text(
+                          widget.car.manufacturer,
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontFamily: "Gilroy",
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Hero(
+                child: Image.asset(
+                  widget.car.image,
+                  height: 180,
+                ),
+                tag: "car_image_${widget.car.fullname}",
+              ),
+              Hero(
+                tag: "rate_book_${widget.car.fullname}",
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: "\$ ${widget.car.rate.toString()}",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 24,
+                                  fontFamily: "Gilroy",
+                                  fontWeight: FontWeight.w800)),
+                          TextSpan(
+                              text: "  /day",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Gilroy",
+                              ))
+                        ]),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: GestureDetector(
+                        onTap: () {
+                          print("book");
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(32),
+                                bottomRight: Radius.circular(32)),
+                            color: Theme.of(context).accentColor,
+                          ),
+                          padding: EdgeInsets.all(12.0),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: Text(
+                              "Book",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 28,
+                                  fontFamily: "Gilroy",
+                                  fontWeight: FontWeight.w800),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -285,10 +319,10 @@ List<Car> carData = [
   Car("Sonata", "Hyundai", 80.06, "assets/images/sonata.png",
       CarSpecification("210 Km/h", "Auto", "4 Cyl", "Gas", "5 Seats", "Sedan"),
       consomption: Rating.worse, comfort: Rating.good, safety: Rating.great),
-  Car("i8", "BMW", 130.08, "assets/images/sonata.png",
+  Car("i8", "BMW", 130.08, "assets/images/i8.png",
       CarSpecification("210 Km/h", "Auto", "4 Cyl", "Gas", "5 Seats", "Sedan"),
       consomption: Rating.worse, comfort: Rating.good, safety: Rating.great),
-  Car("i8", "BMW", 130.08, "assets/images/sonata.png",
+  Car("Sonata2", "Hyundai", 80.06, "assets/images/sonata.png",
       CarSpecification("210 Km/h", "Auto", "4 Cyl", "Gas", "5 Seats", "Sedan"),
       consomption: Rating.worse, comfort: Rating.good, safety: Rating.great),
 ];

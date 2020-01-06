@@ -21,7 +21,14 @@ class Car {
 
 class CarSpecification {
   String maxSpeed, gearSystem, engine, fuel, seats, type;
-
+  static List<String> images = [
+    "assets/icons/dashboard.png",
+    "assets/icons/gearshift.png",
+    "assets/icons/engine.png",
+    "assets/icons/gas-station.png",
+    "assets/icons/chair.png",
+    "assets/icons/car.png",
+  ];
   CarSpecification(this.maxSpeed, this.gearSystem, this.engine, this.fuel,
       this.seats, this.type);
 }

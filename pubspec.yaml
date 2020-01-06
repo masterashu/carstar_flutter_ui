@@ -14,7 +14,7 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -80,6 +80,7 @@ flutter:
     - assets/icons/gearshift.png
     - assets/images/logo.png
     - assets/images/sonata.png
+    - assets/images/i8.png
 
   fonts:
     - family: Gilroy
