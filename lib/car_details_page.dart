@@ -1,4 +1,5 @@
 import 'package:carstar/cars.dart';
+import 'package:carstar/location_picker_page.dart';
 import 'package:carstar/widgets/rating_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -149,7 +150,8 @@ class _CarDetailPageState extends State<CarDetailPage> {
                       flex: 1,
                       child: GestureDetector(
                         onTap: () {
-                          print("book");
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => LocationPickerPage()));
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -173,7 +175,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

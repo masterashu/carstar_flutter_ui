@@ -1,5 +1,6 @@
 import 'package:carstar/car_details_page.dart';
 import 'package:carstar/cars.dart';
+import 'package:carstar/location_picker_page.dart';
 import 'package:flutter/material.dart';
 
 class CarsList extends StatefulWidget {
@@ -279,7 +280,8 @@ class _CarDetailsCardState extends State<CarDetailsCard> {
                       flex: 1,
                       child: GestureDetector(
                         onTap: () {
-                          print("book");
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => LocationPickerPage()));
                         },
                         child: Container(
                           decoration: BoxDecoration(

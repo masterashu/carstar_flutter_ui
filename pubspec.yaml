@@ -81,6 +81,7 @@ flutter:
     - assets/images/logo.png
     - assets/images/sonata.png
     - assets/images/i8.png
+    - assets/images/map.jpg
 
   fonts:
     - family: Gilroy
