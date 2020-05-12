@@ -15,6 +15,124 @@ class _CarsListState extends State<CarsList> {
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.of(context).size.width > 300) {
+      return _buildWeb(context);
+    } else {
+      return _buildMobile(context);
+    }
+  }
+
+  Widget _buildWeb(BuildContext context) {
+    return Material(
+      clipBehavior: Clip.antiAlias,
+      color: Colors.white,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 255, 255, 255),
+            Color.fromARGB(255, 244, 244, 244),
+            Color.fromARGB(255, 228, 228, 228),
+          ], end: AlignmentDirectional.topStart),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  FlatButton(
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      size: 24,
+                    ),
+                    hoverColor: Colors.black12,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 40, top: 20),
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "What is your ",
+                            style: TextStyle(
+                              fontSize: 32,
+                              fontFamily: "Gilroy",
+                              color: Colors.black,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "choice?",
+                            style: TextStyle(
+                              fontSize: 32,
+                              fontFamily: "Gilroy",
+                              fontWeight: FontWeight.w800,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(40, 20, 40, 20),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        _getFilterToggles(),
+                        InkWell(
+                          child: ClipOval(
+                            child: Container(
+                              padding: EdgeInsets.all(8),
+                              color: Color.fromARGB(255, 235, 235, 235),
+                              child: Icon(
+                                Icons.filter_list,
+                                size: 32,
+                              ),
+                            ),
+                          ),
+                          splashColor: Theme.of(context).accentColor,
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.search,
+                      size: 32,
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.only(top: 20, bottom: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: _getCarCards(),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMobile(BuildContext context) {
     return Material(
       clipBehavior: Clip.antiAlias,
       color: Colors.white,
@@ -141,6 +259,7 @@ class _CarsListState extends State<CarsList> {
           child: Container(
             padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
             decoration: BoxDecoration(
+              border: Border.all(color: Colors.black12),
               borderRadius: BorderRadius.circular(20),
               color: filterChoices[i]
                   ? Theme.of(context).accentColor
@@ -150,14 +269,11 @@ class _CarsListState extends State<CarsList> {
               filterTypes[i],
               style: TextStyle(
                 fontSize: 14,
-                color: filterChoices[i]
-                    ? Colors.white
-                    : Color.fromARGB(255, 50, 50, 50),
+                color: filterChoices[i] ? Colors.white : Color.fromARGB(255, 50, 50, 50),
               ),
             ),
           ),
-          splashColor:
-              Color.alphaBlend(Colors.white24, Theme.of(context).accentColor),
+          splashColor: Color.alphaBlend(Colors.white24, Theme.of(context).accentColor),
           onTap: () {
             setState(() {
               filterChoices[i] = !filterChoices[i];
@@ -175,6 +291,7 @@ class _CarsListState extends State<CarsList> {
 
 class CarDetailsCard extends StatefulWidget {
   final Car car;
+
   CarDetailsCard(this.car, {Key key}) : super(key: key);
 
   @override
@@ -186,8 +303,8 @@ class _CarDetailsCardState extends State<CarDetailsCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => CarDetailPage(widget.car)));
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => CarDetailPage(widget.car)));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -280,14 +397,13 @@ class _CarDetailsCardState extends State<CarDetailsCard> {
                       flex: 1,
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => LocationPickerPage()));
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) => LocationPickerPage()));
                         },
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(32),
-                                bottomRight: Radius.circular(32)),
+                                topLeft: Radius.circular(32), bottomRight: Radius.circular(32)),
                             color: Theme.of(context).accentColor,
                           ),
                           padding: EdgeInsets.all(12.0),

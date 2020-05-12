@@ -1,4 +1,5 @@
 import 'package:carstar/car_listing_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -9,6 +10,81 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    print(screenWidth);
+    if (screenWidth > 300) {
+      return _buildWeb(context);
+    }
+    return _buildMobile(context);
+  }
+
+  Widget _buildWeb(BuildContext context) {
+    return Material(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Spacer(flex: 1000),
+          Expanded(
+            flex: 1618,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  "assets/images/logo.png",
+                ),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      "Need a car?\nRent it quickly now!",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 36, fontWeight: FontWeight.w800, fontFamily: "Gilroy"),
+                    ),
+                    SizedBox(
+                      height: 24,
+                    ),
+                    Text(
+                      "You can choose your ideal car and book it easily with Carstar.",
+                      style: TextStyle(fontSize: 20, fontFamily: "Gilroy"),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 1000,
+            child: Center(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => CarsList()));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(40)),
+                    color: Theme.of(context).accentColor,
+                  ),
+                  padding: EdgeInsets.all(32.0),
+                  child: Text(
+                    "Letʼs go",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 36,
+                        fontFamily: "Gilroy",
+                        fontWeight: FontWeight.w800),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Spacer(flex: 1000),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMobile(BuildContext context) {
     return Material(
       color: Colors.white,
       child: Stack(
@@ -29,9 +105,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       Text(
                         "Need a car?\nRent it quickly now!",
                         style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.w800,
-                            fontFamily: "Gilroy"),
+                            fontSize: 36, fontWeight: FontWeight.w800, fontFamily: "Gilroy"),
                       ),
                       SizedBox(
                         height: 24,
@@ -51,8 +125,7 @@ class _WelcomePageState extends State<WelcomePage> {
             right: 0,
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => CarsList()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CarsList()));
               },
               child: Container(
                 width: MediaQuery.of(context).size.width / 2,
