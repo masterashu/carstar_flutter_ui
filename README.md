@@ -1,16 +1,6 @@
-# carstar
+# Carstar
 
-A new Flutter application.
+A Working UI based on the design made by [Pegah Navid](https://dribbble.com/Pegahnavid) on dribble [here](https://dribbble.com/shots/9190587-Carstar).  
+[Click here](https://github.com/masterashu/carstar_flutter_ui/releases/download/v1.0/carstar-v1.0.apk) to download apk.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![design image](https://cdn.dribbble.com/users/3839017/screenshots/9190587/media/96d3b30c5c7229f28ee21000ffdb2c37.png)
